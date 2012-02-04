@@ -1,12 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $ 
 
-# TODO enable testing through FEATURES
-
 JAVA_PKG_IUSE="doc source"
 
-EAPI="1"
+EAPI=4
 
 inherit eutils java-pkg-2 java-ant-2 flag-o-matic
 
@@ -18,56 +16,56 @@ MY_P=${PN}_${PV}
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}_src.zip
 
 themes? (
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/BeOSthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/amarachthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/aquathemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/architectBluethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/architectOlivethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/b0sumiErgothempack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/b0sumithemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/bbjthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/beigeazulthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/beosthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/blueMetalthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/blueTurquesathemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/cellshadedthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/chaNinja-Bluethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/coronaHthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/cougarthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/crystal2themepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/fatalEthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/gfxOasisthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/gorillathemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/hmmXPBluethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/hmmXPMonoBluethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/iBarthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/macosthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/midnightthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/mmMagra-Xthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/modernthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/oliveGreenLunaXPthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/opusLunaSilverthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/opusOSBluethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/opusOSDeepthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/opusOSOlivethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/quickSilverRthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/roueBluethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/roueBrownthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/roueGreenthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/royalInspiratthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/silverLunaXPthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/solunaRthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/tigerGraphitethemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/tigerthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/toxicthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/underlingthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/whistlerthemepack.zip
-http://javootoo.l2fprod.com/plaf/skinlf/themepacks/xplunathemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/BeOSthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/amarachthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/aquathemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/architectBluethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/architectOlivethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/b0sumiErgothempack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/b0sumithemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/bbjthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/beigeazulthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/beosthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/blueMetalthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/blueTurquesathemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/cellshadedthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/chaNinja-Bluethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/coronaHthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/cougarthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/crystal2themepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/fatalEthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/gfxOasisthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/gorillathemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/hmmXPBluethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/hmmXPMonoBluethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/iBarthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/macosthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/midnightthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/mmMagra-Xthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/modernthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/oliveGreenLunaXPthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/opusLunaSilverthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/opusOSBluethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/opusOSDeepthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/opusOSOlivethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/quickSilverRthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/roueBluethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/roueBrownthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/roueGreenthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/royalInspiratthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/silverLunaXPthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/solunaRthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/tigerGraphitethemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/tigerthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/toxicthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/underlingthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/whistlerthemepack.zip
+	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/xplunathemepack.zip
 
-http://tvbrowser.org/downloads/noia.zip
-http://tvbrowser.org/downloads/nuvola.zip
-http://tvbrowser.org/downloads/tulliana.zip
-http://tvbrowser.org/downloads/tango_without_heart.zip
+	http://tvbrowser.org/downloads/noia.zip
+	http://tvbrowser.org/downloads/nuvola.zip
+	http://tvbrowser.org/downloads/tulliana.zip
+	http://tvbrowser.org/downloads/tango_without_heart.zip
 )"
 
 SLOT="0"
@@ -76,16 +74,6 @@ LICENSE="GPL-3"
 
 IUSE="themes"
 
-# - upstream uses stax-api-1.0.1/stax-1.2.0 .. using dev-java/stax-1.2.0
-#   here (has stax-api/stax-dev) but seems ok
-# - upstream uses dev-java/commons-lang-2.5 .. only 2.4 available here but
-#   looks OK so far
-# - upstream uses dev-java/commons-net-2.2 .. only 1.4.1 available here but
-#   looks OK so far
-# - upstream uses jgoodies-forms-1.4.0 .. only jgoodies-forms-1.3.0 here,  but
-#   looks OK so far
-# - upstrean uses jgoodies-looks-2.4.0 .. only jgoodies-looks-2.3.1 here, but 
-#   looks OK so far
 COMMON_DEP="x11-libs/libXt
 	x11-libs/libSM
 	x11-libs/libICE
@@ -105,7 +93,6 @@ COMMON_DEP="x11-libs/libXt
 	>=dev-java/jgoodies-looks-2.3.1
 	dev-java/skinlf
 	>=dev-java/stax-1.2.0"
-# TODO enable testing
 #	test? ( dev-java/junit )
 DEPEND=">=virtual/jdk-1.6
 	app-arch/unzip
@@ -114,10 +101,8 @@ RDEPEND=">=virtual/jre-1.6
 	${COMMON_DEP}"
 
 S="${WORKDIR}/${MY_P/_/-}"
-src_unpack() {
-	unpack ${MY_P}_src.zip
-	cd "${S}" || die
 
+src_prepare() {
 	# now that's a rather nasty trick that removes exactly the lines that unjar
 	# dependencies and include them to tvbrowser's jars
 	# when bumping, check that it doesn't affect lines it shouldn't!
@@ -132,8 +117,10 @@ src_unpack() {
 	# TODO update this comment, it's not up to date
 	# missing dependencies htmlparser jRegistryKey opencsv texhyphj
 	# use local jar files for these, and also those in deployment
-	# some are win32/mac only, so we will let tvbrowser build against them (no need to patch stuff out of sources)
-	# but won't install the bundled jars, because their codepath won't be executed on linux anyway
+	# some are win32/mac only, so we will let tvbrowser build
+	# against them (no need to patch stuff out of sources)
+	# but won't install the bundled jars, because their
+	# codepath won't be executed on linux anyway
 	java-pkg_jar-from bsh,commons-codec,commons-lang-2.1,commons-net,jgoodies-forms,l2fprod-common,log4j,jgoodies-looks-2.0,skinlf,stax
 
 	# Fails to create javadocs without this
@@ -165,7 +152,7 @@ src_install() {
 	cp linux.properties "${D}/${todir}" || die
 
 	insinto "${todir}/themepacks"
-	doins themepacks/themepack.zip || die
+	doins themepacks/themepack.zip
 
 	if use themes; then
 		cd "${DISTDIR}"
@@ -213,9 +200,9 @@ src_install() {
 			toxicthemepack.zip\
 			underlingthemepack.zip\
 			whistlerthemepack.zip\
-			xplunathemepack.zip || die
+			xplunathemepack.zip
 		insinto "${todir}/icons"
-		doins noia.zip nuvola.zip tulliana.zip tango_without_heart.zip || die
+		doins noia.zip nuvola.zip tulliana.zip tango_without_heart.zip
 	fi
 
 	java-pkg_dolauncher "tvbrowser" \
