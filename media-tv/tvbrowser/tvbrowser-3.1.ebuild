@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $ 
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source test"
 
 EAPI=4
 
@@ -10,10 +10,7 @@ inherit eutils java-pkg-2 java-ant-2 flag-o-matic
 
 DESCRIPTION="Themeable and easy to use TV Guide - written in Java"
 HOMEPAGE="http://www.tvbrowser.org/"
-
-MY_P=${PN}_${PV}
-
-SRC_URI="mirror://sourceforge/${PN}/${MY_P}_src.zip
+SRC_URI="mirror://sourceforge/${PN}/${P/-/_}_src.zip
 
 themes? (
 	http://javootoo.l2fprod.com/plaf/skinlf/themepacks/BeOSthemepack.zip
@@ -74,7 +71,19 @@ LICENSE="GPL-3"
 
 IUSE="themes"
 
-COMMON_DEP="x11-libs/libXt
+COMMON_DEP="dev-java/bsh
+	>=dev-java/commons-codec-1.4
+	>=dev-java/commons-lang-2.4
+	>=dev-java/commons-net-1.4.1
+	>=dev-java/jakarta-oro-2.0.8
+	>=dev-java/jgoodies-forms-1.3.0
+	>=dev-java/jgoodies-looks-2.3.1
+	dev-java/l2fprod-common
+	dev-java/log4j
+	dev-java/skinlf
+	>=dev-java/stax-1.2.0
+	dev-java/xalan
+	x11-libs/libXt
 	x11-libs/libSM
 	x11-libs/libICE
 	x11-libs/libXext
@@ -82,58 +91,39 @@ COMMON_DEP="x11-libs/libXt
 	x11-libs/libX11
 	x11-libs/libXau
 	x11-libs/libXdmcp
-	dev-java/bsh
-	>=dev-java/commons-codec-1.4
-	>=dev-java/commons-lang-2.4
-	>=dev-java/commons-net-1.4.1
-	>=dev-java/jakarta-oro-2.0.8
-	dev-java/l2fprod-common
-	dev-java/log4j
-	>=dev-java/jgoodies-forms-1.3.0
-	>=dev-java/jgoodies-looks-2.3.1
-	dev-java/skinlf
-	>=dev-java/stax-1.2.0"
-#	test? ( dev-java/junit )
-DEPEND=">=virtual/jdk-1.6
+"
+DEPEND="${COMMON_DEP}
 	app-arch/unzip
-	${COMMON_DEP}"
-RDEPEND=">=virtual/jre-1.6
-	${COMMON_DEP}"
+	>=virtual/jdk-1.6
+	test? ( dev-java/junit:0 )
+"
+RDEPEND="${COMMON_DEP}
+	>=virtual/jre-1.6
+"
 
-S="${WORKDIR}/${MY_P/_/-}"
+# javac errors about missing junit, lets investigate this later
+RESTRICT="test"
 
 src_prepare() {
-	# now that's a rather nasty trick that removes exactly the lines that unjar
-	# dependencies and include them to tvbrowser's jars
-	# when bumping, check that it doesn't affect lines it shouldn't!
 	sed "/unpacked.dir/d" -i build.xml || die
 
 	cd "${S}"/lib || die
-	# TODO maybe also remove jgoodies-common, someone just need to test it
 	rm -v bsh-*.jar commons-codec-*.jar commons-lang-*.jar commons-net*.jar \
 		l2fprod-common-tasks-7.3.jar skinlf-6.7.jar stax*.jar \
 		jgoodies-form*.jar jgoodies-looks*.jar || die
 
-	# TODO update this comment, it's not up to date
-	# missing dependencies htmlparser jRegistryKey opencsv texhyphj
-	# use local jar files for these, and also those in deployment
-	# some are win32/mac only, so we will let tvbrowser build
-	# against them (no need to patch stuff out of sources)
-	# but won't install the bundled jars, because their
-	# codepath won't be executed on linux anyway
 	java-pkg_jar-from bsh,commons-codec,commons-lang-2.1,commons-net,jgoodies-forms,l2fprod-common,log4j,jgoodies-looks-2.0,skinlf,stax
 
-	# Fails to create javadocs without this
-	mkdir "${S}/public" || die
+	mkdir "${S}/public" || die "failed javadoc dir"
 }
 
 src_compile() {
 	${ANT_OPTS} eant runtime-linux $(use_doc public-doc)
 }
 
-#src_test() {
-#	eant test
-#}
+src_test() {
+	java-pkg-2_src_test
+}
 
 src_install() {
 	use source && java-pkg_dosrc src
