@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -25,6 +25,7 @@ SLOT="0"
 IUSE="debug fftw jabber libsamplerate +resolver twitter"
 
 DEPEND="
+	app-crypt/qca
 	>=dev-cpp/clucene-2.3.3.4
 	>=dev-libs/boost-1.41
 	>=dev-libs/qjson-0.7.1
@@ -45,11 +46,9 @@ DEPEND="
 	)
 	twitter? ( net-libs/qtweetlib )
 "
-RDEPEND="${DEPEND}"
-
-PATCHES=(
-	"${FILESDIR}/${PN}-0.3.2-remove-quazip.patch"
-)
+RDEPEND="${DEPEND}
+	app-crypt/qca-ossl
+"
 
 src_configure() {
 	mycmakeargs=(
