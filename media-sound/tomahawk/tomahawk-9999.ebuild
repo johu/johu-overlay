@@ -51,7 +51,7 @@ RDEPEND="${DEPEND}
 "
 
 src_configure() {
-	mycmakeargs=(
+	local mycmakeargs=(
 		$(cmake-utils_use_with jabber Jreen)
 		$(cmake-utils_use_with resolver LibAttica)
 		$(cmake-utils_use_with resolver QuaZip)
