@@ -2,11 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-JAVA_PKG_IUSE="doc source"
-#WANT_ANT_TASKS="ant-junit"
-
 EAPI=4
 
+#WANT_ANT_TASKS="ant-junit"
+JAVA_PKG_IUSE="doc source"
 inherit eutils java-pkg-2 java-ant-2 flag-o-matic subversion
 
 DESCRIPTION="Themeable and easy to use TV Guide - written in Java"
