@@ -54,7 +54,6 @@ src_configure() {
 	local mycmakeargs=(
 		$(cmake-utils_use_with jabber Jreen)
 		$(cmake-utils_use_with twitter QTweetLib)
-		-DINTERNAL_JREEN=OFF
 	)
 
 	if [[ ${PV} != *9999* ]]; then
