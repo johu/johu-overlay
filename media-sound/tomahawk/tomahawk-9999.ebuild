@@ -22,7 +22,7 @@ HOMEPAGE="http://tomahawk-player.org/"
 
 LICENSE="GPL-3 BSD"
 SLOT="0"
-IUSE="debug fftw jabber libsamplerate twitter"
+IUSE="debug jabber twitter"
 
 DEPEND="
 	app-crypt/qca
@@ -41,9 +41,7 @@ DEPEND="
 	>=x11-libs/qt-gui-${QT_MINIMAL}:4
 	>=x11-libs/qt-sql-${QT_MINIMAL}:4[sqlite]
 	>=x11-libs/qt-webkit-${QT_MINIMAL}:4
-	fftw? ( sci-libs/fftw:3.0 )
 	jabber? ( net-libs/jreen )
-	libsamplerate? ( media-libs/libsamplerate )
 	twitter? ( net-libs/qtweetlib )
 "
 RDEPEND="${DEPEND}
