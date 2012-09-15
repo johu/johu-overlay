@@ -131,7 +131,7 @@ src_install() {
 	cd runtime/${PN}_linux || die
 
 	java-pkg_dojar ${PN}.jar
-	java-pkg_dojar "${S}"/lib/{guava-r09.jar,htmlparser-1.6.jar,jRegistryKey-1.4.5.jar,jgoodies-common-1.2.1.jar,opencsv-2.3.jar,substance-6.1.jar,texhyphj-1.1.jar,trident-1.3.jar}
+	java-pkg_dojar "${S}"/lib/{htmlparser-1.6.jar,jRegistryKey-1.4.5.jar,jgoodies-common-1.2.1.jar,opencsv-2.3.jar,substance-6.1.jar,texhyphj-1.1.jar,trident-1.3.jar}
 
 	local todir="${JAVA_PKG_SHAREPATH}"
 
