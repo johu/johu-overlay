@@ -200,4 +200,7 @@ src_install() {
 		--java_args " -Dpropertiesfile=${todir}/linux.properties"
 
 	make_desktop_entry ${PN} "TV-Browser" /usr/share/tvbrowser/imgs/tvbrowser128.png
+
+	sed -e "s/AudioVideo;TV/AudioVideo;TV;Video/" \
+		-i "${D}"/usr/share/applications/tvbrowser-tvbrowser.desktop || die "fixing .desktop file failed"
 }
