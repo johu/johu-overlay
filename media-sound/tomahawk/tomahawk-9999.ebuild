@@ -6,12 +6,14 @@ EAPI=5
 
 QT_MINIMAL="4.7.0"
 
+CMAKE_MIN_VERSION="2.8.6"
+
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="http://download.tomahawk-player.org/${P}.tar.bz2"
 	KEYWORDS="~amd64 ~x86"
 else
 	GIT_ECLASS="git-2"
-	EGIT_REPO_URI="git://github.com/tomahawk-player/tomahawk.git"
+	EGIT_REPO_URI="git://github.com/tomahawk-player/${PN}.git"
 	KEYWORDS=""
 fi
 
@@ -25,22 +27,23 @@ SLOT="0"
 IUSE="debug jabber twitter"
 
 DEPEND="
-	app-crypt/qca
+	app-crypt/qca:2
 	>=dev-cpp/clucene-2.3.3.4
 	>=dev-libs/boost-1.41
 	>=dev-libs/libattica-0.4.0
 	dev-libs/qjson
 	dev-libs/quazip
+	>=dev-qt/qtcore-${QT_MINIMAL}:4
+	>=dev-qt/qtdbus-${QT_MINIMAL}:4
+	>=dev-qt/qtgui-${QT_MINIMAL}:4
+	>=dev-qt/qtsql-${QT_MINIMAL}:4[sqlite]
+	>=dev-qt/qtsvg-${QT_MINIMAL}:4
+	>=dev-qt/qtwebkit-${QT_MINIMAL}:4
 	>=media-libs/liblastfm-1.0.1
 	>=media-libs/libechonest-2.0.2
 	>=media-libs/phonon-4.5.0
-	media-libs/taglib
+	>=media-libs/taglib-1.6.0
 	x11-libs/libX11
-	>=x11-libs/qt-core-${QT_MINIMAL}:4
-	>=x11-libs/qt-dbus-${QT_MINIMAL}:4
-	>=x11-libs/qt-gui-${QT_MINIMAL}:4
-	>=x11-libs/qt-sql-${QT_MINIMAL}:4[sqlite]
-	>=x11-libs/qt-webkit-${QT_MINIMAL}:4
 	jabber? ( >=net-libs/jreen-1.1.1 )
 	twitter? ( net-libs/qtweetlib )
 "
