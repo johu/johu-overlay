@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit cmake-utils git-2
+inherit cmake-utils git-r3
 
 DESCRIPTION="Qt API for storing passwords securely"
 HOMEPAGE="https://github.com/frankosterfeld/qtkeychain"
@@ -13,18 +13,24 @@ EGIT_REPO_URI="git://github.com/frankosterfeld/${PN}"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="qt5"
 
 DEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtdbus:4
+	qt5? (
+		dev-qt/qtcore:5
+		dev-qt/qtdbus:5
+	)
+	!qt5? (
+		dev-qt/qtcore:4
+		dev-qt/qtdbus:4
+	)
 "
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/${PN}-0.1.0-qt5.patch" )
-
 src_configure() {
-	local mycmakeargs=( -DQT5_BUILD=OFF )
+	local mycmakeargs=(
+		$(cmake-utils_use_build !qt5 WITH_QT4)
+	)
 
 	cmake-utils_src_configure
 }
