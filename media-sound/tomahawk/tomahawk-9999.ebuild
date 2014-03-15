@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -29,10 +29,9 @@ DEPEND="
 	app-crypt/qca:2
 	>=dev-cpp/clucene-2.3.3.4
 	>=dev-libs/boost-1.41
-	>=dev-libs/libattica-0.4.0
 	dev-libs/qjson
 	dev-libs/quazip
-	dev-libs/qtkeychain[qt5?]
+	dev-libs/qtkeychain
 	>=media-libs/libechonest-2.1.0
 	>=media-libs/liblastfm-1.0.1
 	>=media-libs/phonon-4.5.0
@@ -40,6 +39,7 @@ DEPEND="
 	x11-libs/libX11
 	jabber? ( >=net-libs/jreen-1.1.1 )
 	!qt5? (
+		>=dev-libs/libattica-0.4.0
 		dev-qt/designer:4
 		dev-qt/qtcore:4
 		dev-qt/qtdbus:4
@@ -49,6 +49,7 @@ DEPEND="
 		dev-qt/qtwebkit:4
 	)
 	qt5? (
+		>=dev-libs/libattica-0.4.0[qt5]
 		dev-qt/designer:5
 		dev-qt/qtcore:5
 		dev-qt/qtsvg:5
