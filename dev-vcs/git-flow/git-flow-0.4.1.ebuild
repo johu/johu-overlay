@@ -20,6 +20,8 @@ DEPEND="dev-util/shflags"
 RDEPEND="${DEPEND}
 	dev-vcs/git"
 
+DOCS=( AUTHORS Changes.mdown README.mdown )
+
 S="${WORKDIR}/nvie-gitflow-5b26edc"
 
 src_prepare() {
@@ -32,6 +34,8 @@ src_compile() {
 
 src_install() {
 	emake prefix="${D}" install
+
+	dodoc "${DOCS[@]}"
 
 	newbashcomp "${WORKDIR}/bobthecow-git-flow-completion-b399150/git-flow-completion.bash" git-flow
 }
