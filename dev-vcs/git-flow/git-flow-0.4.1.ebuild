@@ -33,7 +33,7 @@ src_compile() {
 }
 
 src_install() {
-	emake prefix="${D}" install
+	emake prefix="${D}/usr" install
 
 	dodoc "${DOCS[@]}"
 
