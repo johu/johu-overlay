@@ -16,9 +16,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="dev-util/shflags"
+DEPEND=""
 RDEPEND="${DEPEND}
-	dev-vcs/git"
+	dev-util/shflags
+	dev-vcs/git
+"
 
 DOCS=( AUTHORS Changes.mdown README.mdown )
 
