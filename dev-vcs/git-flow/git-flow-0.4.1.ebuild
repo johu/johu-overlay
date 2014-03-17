@@ -4,14 +4,16 @@
 
 EAPI=5
 
+MY_PN="${PN/-/}"
+COMP_PV="0.4.2.2"
 inherit eutils bash-completion-r1
 
-DESCRIPTION="Git extensions to provide high-level repository operations for Vincent Driessen's branching model."
+DESCRIPTION="Git extensions to provide high-level repository operations for Vincent Driessen's branching model"
 HOMEPAGE="https://github.com/nvie/gitflow"
-SRC_URI="https://github.com/nvie/gitflow/tarball/0.4.1 -> ${P}.tar.gz
-https://github.com/bobthecow/git-flow-completion/tarball/0.4.1.0 -> ${P}-completion.tar.gz"
+SRC_URI="https://github.com/nvie/${MY_PN}/archive/${PV}.tar.gz -> ${P}.tar.gz
+https://github.com/bobthecow/${PN}-completion/archive/${COMP_PV}.tar.gz -> ${PN}-completion-${COMP_PV}.tar.gz"
 
-LICENSE="BSD"
+LICENSE="BSD MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
@@ -26,7 +28,7 @@ DOCS=( AUTHORS Changes.mdown README.mdown )
 
 PATCHES=( "${FILESDIR}/${P}-unbundle-shflags.patch" )
 
-S="${WORKDIR}/nvie-gitflow-5b26edc"
+S="${WORKDIR}/${MY_PN}-${PV}"
 
 src_prepare() {
 	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
@@ -43,5 +45,5 @@ src_install() {
 
 	[[ ${DOCS[@]} ]] && dodoc "${DOCS[@]}"
 
-	newbashcomp "${WORKDIR}/bobthecow-git-flow-completion-b399150/git-flow-completion.bash" git-flow
+	newbashcomp "${WORKDIR}/${PN}-completion-${COMP_PV}/${PN}-completion.bash" ${PN}
 }
