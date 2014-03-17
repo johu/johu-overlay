@@ -22,10 +22,14 @@ RDEPEND="${DEPEND}
 
 DOCS=( AUTHORS Changes.mdown README.mdown )
 
+PATCHES=( "${FILESDIR}/${P}-unbundle-shflags.patch" )
+
 S="${WORKDIR}/nvie-gitflow-5b26edc"
 
 src_prepare() {
-	epatch "${FILESDIR}/system-shflags.patch"
+	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
+	debug-print "$FUNCNAME: applying user patches"
+	epatch_user
 }
 
 src_compile() {
@@ -35,7 +39,7 @@ src_compile() {
 src_install() {
 	emake prefix="${D}/usr" install
 
-	dodoc "${DOCS[@]}"
+	[[ ${DOCS[@]} ]] && dodoc "${DOCS[@]}"
 
 	newbashcomp "${WORKDIR}/bobthecow-git-flow-completion-b399150/git-flow-completion.bash" git-flow
 }
