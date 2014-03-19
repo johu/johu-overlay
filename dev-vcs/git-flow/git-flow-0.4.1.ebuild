@@ -5,13 +5,15 @@
 EAPI=5
 
 MY_PN="${PN/-/}"
+COMP_PN="${PN}-completion"
 COMP_PV="0.4.2.2"
+COMP_P="${COMP_PN}-${COMP_PV}"
 inherit eutils bash-completion-r1
 
 DESCRIPTION="Git extensions to provide high-level repository operations for Vincent Driessen's branching model"
 HOMEPAGE="https://github.com/nvie/gitflow"
 SRC_URI="https://github.com/nvie/${MY_PN}/archive/${PV}.tar.gz -> ${P}.tar.gz
-https://github.com/bobthecow/${PN}-completion/archive/${COMP_PV}.tar.gz -> ${PN}-completion-${COMP_PV}.tar.gz"
+https://github.com/bobthecow/${COMP_PN}/archive/${COMP_PV}.tar.gz -> ${COMP_P}.tar.gz"
 
 LICENSE="BSD MIT"
 SLOT="0"
@@ -45,5 +47,5 @@ src_install() {
 
 	[[ ${DOCS[@]} ]] && dodoc "${DOCS[@]}"
 
-	newbashcomp "${WORKDIR}/${PN}-completion-${COMP_PV}/${PN}-completion.bash" ${PN}
+	newbashcomp "${WORKDIR}/${COMP_P}/${COMP_PN}.bash" ${PN}
 }
