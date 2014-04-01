@@ -7,7 +7,6 @@ EAPI=5
 inherit cmake-utils eutils pax-utils user versionator
 
 EGIT_REPO_URI="git://git.quassel-irc.org/quassel"
-EGIT_BRANCH="master"
 [[ "${PV}" == "9999" ]] && inherit git-r3
 
 DESCRIPTION="Qt/KDE IRC client supporting a remote daemon for 24/7 connectivity"
