@@ -10,7 +10,7 @@ EGIT_REPO_URI="git://git.quassel-irc.org/quassel.git"
 EGIT_BRANCH="master"
 [[ "${PV}" == "9999" ]] && inherit git-2
 
-DESCRIPTION="Qt4/KDE4 IRC client supporting a remote daemon for 24/7 connectivity."
+DESCRIPTION="Qt/KDE IRC client supporting a remote daemon for 24/7 connectivity"
 HOMEPAGE="http://quassel-irc.org/"
 [[ "${PV}" == "9999" ]] || SRC_URI="http://quassel-irc.org/pub/${P/_/-}.tar.bz2"
 
