@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit cmake-utils git-r3
+inherit cmake-utils multibuild git-r3
 
 DESCRIPTION="Qt API for storing passwords securely"
 HOMEPAGE="https://github.com/frankosterfeld/qtkeychain"
@@ -13,26 +13,58 @@ EGIT_REPO_URI="git://github.com/frankosterfeld/${PN}"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
-IUSE="qt5"
+IUSE="+qt4 qt5"
 
-DEPEND="
+REQUIRED_USE="|| ( qt4 qt5 )"
+
+RDEPEND="
 	qt5? (
 		dev-qt/qtcore:5
 		dev-qt/qtdbus:5
 	)
-	!qt5? (
+	qt4? (
 		dev-qt/qtcore:4
 		dev-qt/qtdbus:4
 	)
 "
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}
+	qt5? ( dev-qt/linguist-tools:5 )
+"
 
 DOCS=( ChangeLog ReadMe.txt )
 
-src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_build !qt5 WITH_QT4)
-	)
+pkg_setup() {
+	MULTIBUILD_VARIANTS=()
+	if use qt4; then
+		MULTIBUILD_VARIANTS+=(qt4)
+	fi
+	if use qt5; then
+		MULTIBUILD_VARIANTS+=(qt5)
+	fi
+}
 
-	cmake-utils_src_configure
+src_configure() {
+	myconfigure() {
+		if [[ ${MULTIBUILD_VARIANT} = qt4 ]]; then
+			local mycmakeargs=(-DBUILD_WITH_QT4=ON)
+		fi
+		if [[ ${MULTIBUILD_VARIANT} = qt5 ]]; then
+			local mycmakeargs=(-DBUILD_WITH_QT4=OFF)
+		fi
+		cmake-utils_src_configure
+	}
+
+	multibuild_foreach_variant myconfigure
+}
+
+src_compile() {
+	multibuild_foreach_variant cmake-utils_src_compile
+}
+
+src_install() {
+	multibuild_foreach_variant cmake-utils_src_install
+}
+
+src_test() {
+	multibuild_foreach_variant cmake-utils_src_test
 }
