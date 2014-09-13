@@ -48,7 +48,7 @@ GUI_RDEPEND="
 		webkit? ( dev-qt/qtwebkit:5[widgets] )
 	)
 	!qt5? (
-		dev-qt/qtgui:5
+		dev-qt/qtgui:4
 		ayatana? ( dev-libs/libindicate-qt )
 		dbus? (
 			dev-libs/libdbusmenu-qt[qt4(+)]
