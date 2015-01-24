@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -41,11 +41,11 @@ GUI_RDEPEND="
 		dev-qt/qtgui:5
 		dev-qt/qtwidgets:5
 		dbus? (
-			dev-libs/libdbusmenu-qt[qt5(+)]
+			dev-libs/libdbusmenu-qt[qt5]
 			dev-qt/qtdbus:5
 		)
 		phonon? ( media-libs/phonon[qt5] )
-		webkit? ( dev-qt/qtwebkit:5[widgets] )
+		webkit? ( dev-qt/qtwebkit:5 )
 	)
 	!qt5? (
 		dev-qt/qtgui:4
@@ -55,7 +55,7 @@ GUI_RDEPEND="
 			dev-qt/qtdbus:4
 			kde? (
 				kde-base/kdelibs:4
-				kde-base/oxygen-icons:4
+				|| ( kde-apps/oxygen-icons kde-base/oxygen-icons:4 )
 				ayatana? ( kde-misc/plasma-widget-message-indicator )
 			)
 		)
