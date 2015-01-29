@@ -25,17 +25,11 @@ IUSE="debug +hatchet jabber kde qt5 telepathy"
 
 REQUIRED_USE="telepathy? ( kde )"
 
-# TODO
-# qt5 use flag needs some work:
-# - deps with missing qt4/qt5 use flags
-# - does not build with in-tree only deps
 DEPEND="
 	dev-cpp/lucene++
 	dev-cpp/sparsehash
 	dev-libs/boost
 	dev-libs/quazip
-	>=media-libs/libechonest-2.2.0:=
-	media-libs/liblastfm
 	>=media-libs/taglib-1.8.0
 	>=net-libs/gnutls-3.2
 	x11-libs/libX11
@@ -54,6 +48,8 @@ DEPEND="
 		dev-qt/qtsvg:4
 		dev-qt/qtwebkit:4
 		media-libs/phonon[qt4]
+		>=media-libs/libechonest-2.3.0:=[qt4]
+		media-libs/liblastfm[qt4]
 		telepathy? ( net-libs/telepathy-qt[qt4] )
 	)
 	qt5? (
@@ -66,6 +62,8 @@ DEPEND="
 		dev-qt/qtwidgets:5
 		kde-frameworks/attica:5
 		media-libs/phonon[qt5]
+		>=media-libs/libechonest-2.3.0:=[qt5]
+		media-libs/liblastfm[qt5]
 		telepathy? ( net-libs/telepathy-qt[qt5] )
 	)
 "
