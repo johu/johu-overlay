@@ -30,7 +30,6 @@ REQUIRED_USE="telepathy? ( kde )"
 # - deps with missing qt4/qt5 use flags
 # - does not build with in-tree only deps
 DEPEND="
-	app-crypt/qca:2
 	dev-cpp/lucene++
 	dev-cpp/sparsehash
 	dev-libs/boost
@@ -43,6 +42,7 @@ DEPEND="
 	hatchet? ( dev-cpp/websocketpp )
 	jabber? ( net-libs/jreen )
 	!qt5? (
+		app-crypt/qca:2[qt4]
 		>=dev-libs/libattica-0.4.0
 		dev-libs/qjson
 		dev-libs/qtkeychain[qt4]
@@ -57,6 +57,7 @@ DEPEND="
 		telepathy? ( net-libs/telepathy-qt[qt4] )
 	)
 	qt5? (
+		app-crypt/qca:2[qt5]
 		dev-libs/qtkeychain[qt5]
 		dev-qt/designer:5
 		dev-qt/qtcore:5
@@ -69,7 +70,7 @@ DEPEND="
 	)
 "
 RDEPEND="${DEPEND}
-	app-crypt/qca-ossl
+	|| ( app-crypt/qca-ossl:2 app-crypt/qca:2[openssl] )
 "
 
 DOCS=( AUTHORS ChangeLog README.md )
