@@ -48,6 +48,8 @@ GUI_RDEPEND="
 		kde? (
 			kde-frameworks/kconfigwidgets:5
 			kde-frameworks/kcoreaddons:5
+			kde-frameworks/knotifications:5
+			kde-frameworks/knotifyconfig:5
 			kde-frameworks/ktextwidgets:5
 			kde-frameworks/kxmlgui:5
 			kde-frameworks/sonnet:5
