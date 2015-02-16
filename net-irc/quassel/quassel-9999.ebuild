@@ -51,6 +51,7 @@ GUI_RDEPEND="
 			kde-frameworks/knotifications:5
 			kde-frameworks/knotifyconfig:5
 			kde-frameworks/ktextwidgets:5
+			kde-frameworks/kwidgetsaddons:5
 			kde-frameworks/kxmlgui:5
 			kde-frameworks/sonnet:5
 		)
