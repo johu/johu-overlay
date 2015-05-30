@@ -1,7 +1,4 @@
-dev-cpp
-dev-vcs
-kde-base
-kde-misc
+app-emulation
+dev-libs
 media-sound
-media-tv
 net-irc
