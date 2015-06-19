@@ -63,7 +63,7 @@ GUI_RDEPEND="
 			dev-qt/qtdbus:4
 			kde? (
 				kde-base/kdelibs:4
-				|| ( kde-apps/oxygen-icons kde-base/oxygen-icons:4 )
+				kde-apps/oxygen-icons
 				ayatana? ( kde-misc/plasma-widget-message-indicator )
 			)
 		)
@@ -90,8 +90,8 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	qt5? (
-		dev-libs/extra-cmake-modules
 		dev-qt/linguist-tools:5
+		kde-frameworks/extra-cmake-modules
 	)
 "
 
@@ -107,7 +107,7 @@ REQUIRED_USE="
 	kde? ( || ( X monolithic ) )
 	phonon? ( || ( X monolithic ) )
 	postgres? ( || ( server monolithic ) )
-	qt5? ( !ayatana phonon )
+	qt5? ( !ayatana )
 	syslog? ( || ( server monolithic ) )
 	webkit? ( || ( X monolithic ) )
 "
