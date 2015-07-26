@@ -24,7 +24,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 DEPEND="${PYTHON_DEPS}
 	>=dev-cpp/yaml-cpp-0.5.1
-	>=dev-libs/boost-1.55[${PYTHON_USEDEP}]
+	>=dev-libs/boost-1.55:=[${PYTHON_USEDEP}]
 	$(add_frameworks_dep kconfig)
 	$(add_frameworks_dep ki18n)
 	$(add_frameworks_dep kcoreaddons)
