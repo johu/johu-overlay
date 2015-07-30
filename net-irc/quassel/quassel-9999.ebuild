@@ -97,8 +97,6 @@ DEPEND="${RDEPEND}
 
 DOCS=( AUTHORS ChangeLog README )
 
-PATCHES=( "${FILESDIR}/${PN}-0.12.2-qt55.patch" )
-
 REQUIRED_USE="
 	|| ( X server monolithic )
 	ayatana? ( || ( X monolithic ) )
