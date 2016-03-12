@@ -61,7 +61,6 @@ src_prepare() {
 	       PYTHON_INCLUDE_PATH="$(python_get_library_path)"\
 	       PYTHON_CFLAGS="$(python_get_CFLAGS)"\
 	       PYTHON_LIBS="$(python_get_LIBS)"
-	export QT_SELECT=qt5
 }
 
 src_configure() {
