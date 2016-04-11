@@ -45,6 +45,12 @@ src_configure() {
 		if [[ ${MULTIBUILD_VARIANT} = qt5 ]]; then
 			local mycmakeargs=(-DBUILD_WITH_QT4=OFF)
 		fi
+
+		mycmakeargs+=(
+			-DQTKEYCHAIN_STATIC=OFF
+			-DBUILD_TRANSLATIONS=ON
+		)
+
 		cmake-utils_src_configure
 	}
 
