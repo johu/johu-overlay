@@ -11,7 +11,7 @@ HOMEPAGE="https://github.com/frankosterfeld/qtkeychain"
 EGIT_REPO_URI="git://github.com/frankosterfeld/${PN}"
 
 LICENSE="BSD"
-SLOT="0"
+SLOT="0/1"
 KEYWORDS=""
 IUSE="+qt4 qt5"
 
