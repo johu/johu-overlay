@@ -5,7 +5,7 @@
 EAPI=6
 
 MY_PN=${PN/-bin/}
-inherit eutils unpacker
+inherit eutils gnome2-utils unpacker
 
 DESCRIPTION="All-in-one voice and text chat for gamers"
 HOMEPAGE="https://discordapp.com"
@@ -70,4 +70,16 @@ src_install() {
 		/usr/share/applications/${MY_PN}.desktop
 	dosym /opt/${MY_PN}/share/pixmaps/${MY_PN}.png \
 		/usr/share/pixmaps/${MY_PN}.png
+}
+
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
