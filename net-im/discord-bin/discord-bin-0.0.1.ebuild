@@ -59,7 +59,14 @@ src_unpack() {
 	unpack_deb ${A}
 }
 
-# TODO: wrong exec path in desktop file
+src_prepare() {
+	default
+
+	sed -i \
+		-e "s:/usr/share/discord/Discord:discord:g" \
+		usr/share/${MY_PN}/${MY_PN}.desktop || die
+}
+
 src_install() {
 	insinto /opt/${MY_PN}
 	doins -r usr/.
