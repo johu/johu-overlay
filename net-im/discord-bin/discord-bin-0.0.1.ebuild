@@ -5,7 +5,7 @@
 EAPI=6
 
 MY_PN=${PN/-bin/}
-inherit unpacker
+inherit eutils unpacker
 
 DESCRIPTION="All-in-one voice and text chat for gamers"
 HOMEPAGE="https://discordapp.com"
@@ -50,15 +50,24 @@ S=${WORKDIR}
 RESTRICT="mirror"
 
 QA_PREBUILT="
-	usr/share/discord/Discord
-	usr/share/discord/libnode.so
-	usr/share/discord/libffmpeg.so
+	opt/discord/share/discord/Discord
+	opt/discord/share/discord/libnode.so
+	opt/discord/share/discord/libffmpeg.so
 "
 
 src_unpack() {
 	unpack_deb ${A}
 }
 
+# TODO: wrong exec path in desktop file
 src_install() {
-	cp -ar ./* "${ED}" || die "copy files failed"
+	insinto /opt/${MY_PN}
+	doins -r usr/.
+
+	fperms +x /opt/${MY_PN}/bin/${MY_PN}
+	dosym /opt/${MY_PN}/bin/${MY_PN} /usr/bin/${MY_PN}
+	dosym /opt/${MY_PN}/share/applications/${MY_PN}.desktop \
+		/usr/share/applications/${MY_PN}.desktop
+	dosym /opt/${MY_PN}/share/pixmaps/${MY_PN}.png \
+		/usr/share/pixmaps/${MY_PN}.png
 }
