@@ -11,12 +11,14 @@ HOMEPAGE="http://calamares.io"
 if [[ ${KDE_BUILD_TYPE} == live ]] ; then
 	EGIT_REPO_URI="git://github.com/${PN}/${PN}"
 else
-	SRC_URI="https://github.com/${PN}/${PN}/releases/download/v${PV}/${P}.tar.gz"
+	inherit versionator
+	MAJOR_PV=$(get_version_component_range 1-2)
+	SRC_URI="https://github.com/${PN}/${PN}/releases/download/v${MAJOR_PV}/${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
 LICENSE="GPL-3"
-IUSE="+networkmanager +upower"
+IUSE="+networkmanager pythonqt +upower"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
@@ -36,7 +38,8 @@ DEPEND="${PYTHON_DEPS}
 	sys-apps/dbus
 	sys-apps/dmidecode
 	sys-auth/polkit-qt[qt5]
-	sys-libs/kpmcore:5=
+	>=sys-libs/kpmcore-3.0.2:5=
+	pythonqt? ( >=dev-python/PythonQt-3.1:=[${PYTHON_USEDEP}] )
 "
 
 RDEPEND="${DEPEND}
@@ -47,8 +50,7 @@ RDEPEND="${DEPEND}
 	|| ( sys-boot/grub:2 sys-boot/systemd-boot )
 	sys-boot/os-prober
 	sys-fs/squashfs-tools
-	sys-fs/udisks:2[systemd]
-	virtual/udev[systemd]
+	virtual/udev
 	networkmanager? ( net-misc/networkmanager )
 	upower? ( sys-power/upower )
 "
@@ -66,6 +68,7 @@ src_prepare() {
 src_configure() {
 	local mycmakeargs=(
 		-DWEBVIEW_FORCE_WEBKIT=OFF
+		-DWITH_PYTHONQT=$(usex pythonqt)
 	)
 
 	kde5_src_configure
