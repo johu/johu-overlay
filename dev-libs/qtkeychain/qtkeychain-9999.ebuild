@@ -12,7 +12,7 @@ EGIT_REPO_URI="git://github.com/frankosterfeld/${PN}"
 LICENSE="BSD"
 SLOT="0/1"
 KEYWORDS=""
-IUSE="+qt4 qt5"
+IUSE="gnome-keyring qt4 +qt5"
 
 REQUIRED_USE="|| ( qt4 qt5 )"
 
@@ -27,6 +27,7 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
+	gnome-keyring? ( gnome-base/libgnome-keyring )
 	qt5? ( dev-qt/linguist-tools:5 )
 "
 
@@ -48,6 +49,7 @@ src_configure() {
 		mycmakeargs+=(
 			-DQTKEYCHAIN_STATIC=OFF
 			-DBUILD_TRANSLATIONS=ON
+			-DLIBSECRET_SUPPORT=$(usex gnome-keyring)
 		)
 
 		cmake-utils_src_configure
