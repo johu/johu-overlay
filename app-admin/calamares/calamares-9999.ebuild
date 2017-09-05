@@ -7,13 +7,11 @@ PYTHON_COMPAT=( python{3_4,3_5} )
 inherit kde5 python-r1
 
 DESCRIPTION="Distribution-independent installer framework"
-HOMEPAGE="http://calamares.io"
+HOMEPAGE="https://calamares.io"
 if [[ ${KDE_BUILD_TYPE} == live ]] ; then
-	EGIT_REPO_URI="git://github.com/${PN}/${PN}"
+	EGIT_REPO_URI="https://github.com/${PN}/${PN}"
 else
-	inherit versionator
-	MAJOR_PV=$(get_version_component_range 1-2)
-	SRC_URI="https://github.com/${PN}/${PN}/releases/download/v${MAJOR_PV}/${P}.tar.gz"
+	SRC_URI="https://github.com/${PN}/${PN}/releases/download/v${PV}/${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 
@@ -37,8 +35,8 @@ DEPEND="${PYTHON_DEPS}
 	>=dev-libs/boost-1.55:=[${PYTHON_USEDEP}]
 	sys-apps/dbus
 	sys-apps/dmidecode
-	sys-auth/polkit-qt[qt5]
-	>=sys-libs/kpmcore-3.0.2:5=
+	sys-auth/polkit-qt[qt5(+)]
+	>=sys-libs/kpmcore-3.0.3:5=
 	pythonqt? ( >=dev-python/PythonQt-3.1:=[${PYTHON_USEDEP}] )
 "
 
