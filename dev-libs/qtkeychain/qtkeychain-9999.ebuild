@@ -7,7 +7,7 @@ inherit cmake-utils git-r3
 
 DESCRIPTION="Qt API for storing passwords securely"
 HOMEPAGE="https://github.com/frankosterfeld/qtkeychain"
-EGIT_REPO_URI="git://github.com/frankosterfeld/${PN}"
+EGIT_REPO_URI="https://github.com/frankosterfeld/${PN}"
 
 LICENSE="BSD"
 SLOT="0/1"
