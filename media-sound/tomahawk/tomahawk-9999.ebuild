@@ -30,20 +30,20 @@ CDEPEND="
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtx11extras)
 	$(add_qt_dep qtxml)
-	app-crypt/qca:2[qt5]
+	app-crypt/qca:2[qt5(+)]
 	dev-cpp/lucene++
 	dev-cpp/sparsehash
 	dev-libs/boost:=
 	dev-libs/qtkeychain:=[qt5(+)]
-	>=dev-libs/quazip-0.7.2[qt5]
-	media-libs/liblastfm[qt5]
+	>=dev-libs/quazip-0.7.2[qt5(+)]
+	>=media-libs/liblastfm-1.0.9-r1[qt5(+)]
 	>=media-libs/taglib-1.8.0
 	media-video/vlc:=[flac,dvbpsi,ffmpeg,mp3]
 	>=net-libs/gnutls-3.2:=
 	x11-libs/libX11
 	hatchet? ( dev-cpp/websocketpp )
-	telepathy? ( net-libs/telepathy-qt[qt5(+)] )
-	xmpp? ( net-libs/jreen[qt5] )
+	telepathy? ( >=net-libs/telepathy-qt-0.9.7-r1[qt5(+)] )
+	xmpp? ( >=net-libs/jreen-1.3.0[qt5(+)] )
 "
 DEPEND="${CDEPEND}
 	$(add_qt_dep designer)
