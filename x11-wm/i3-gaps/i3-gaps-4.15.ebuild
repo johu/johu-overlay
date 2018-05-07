@@ -11,7 +11,7 @@ SRC_URI="https://github.com/Airblader/i3/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 ~arm x86"
+KEYWORDS="~amd64"
 IUSE=""
 
 S=${WORKDIR}/i3-${PV}
