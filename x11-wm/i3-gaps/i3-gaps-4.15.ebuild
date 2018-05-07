@@ -81,7 +81,7 @@ pkg_postinst() {
 	einfo "There are several packages that you may find useful with ${PN} and"
 	einfo "their usage is suggested by the upstream maintainers, namely:"
 	einfo "  x11-misc/dmenu"
-	einfo "  x11-misc/i3status"
 	einfo "  x11-misc/i3lock"
+	einfo "  x11-misc/i3status"
 	einfo "Please refer to their description for additional info."
 }
