@@ -44,7 +44,7 @@ S=${WORKDIR}/i3-${PV}
 
 DOCS=( RELEASE-NOTES-${PV} )
 
-PATCHES[0]="${FILESDIR}/musl.patch"
+PATCHES=( "${FILESDIR}/musl.patch" )
 
 src_prepare() {
 	default
