@@ -16,26 +16,30 @@ IUSE=""
 
 S=${WORKDIR}/i3-${PV}
 
-CDEPEND="dev-libs/libev
+CDEPEND="
+	dev-libs/libev
 	dev-libs/libpcre
-	>=dev-libs/yajl-2.0.3
+	dev-libs/yajl
+	x11-libs/cairo[X,xcb]
 	x11-libs/libxcb[xkb]
 	x11-libs/libxkbcommon[X]
+	x11-libs/pango[X]
 	x11-libs/startup-notification
 	x11-libs/xcb-util
 	x11-libs/xcb-util-cursor
 	x11-libs/xcb-util-keysyms
 	x11-libs/xcb-util-wm
 	x11-libs/xcb-util-xrm
-	>=x11-libs/cairo-1.14.4[X,xcb]
-	>=x11-libs/pango-1.30.0[X]"
+"
 DEPEND="${CDEPEND}
-	virtual/pkgconfig"
+	virtual/pkgconfig
+"
 RDEPEND="${CDEPEND}
 	dev-lang/perl
 	dev-perl/AnyEvent-I3
 	dev-perl/JSON-XS
-	!x11-wm/i3"
+	!x11-wm/i3
+"
 
 DOCS=( RELEASE-NOTES-${PV} )
 PATCHES[0]="${FILESDIR}/musl.patch"
