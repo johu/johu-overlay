@@ -17,6 +17,7 @@ IUSE=""
 S=${WORKDIR}/i3-${PV}
 
 CDEPEND="
+	dev-libs/glib:2
 	dev-libs/libev
 	dev-libs/libpcre
 	dev-libs/yajl
