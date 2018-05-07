@@ -14,8 +14,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-S=${WORKDIR}/i3-${PV}
-
 CDEPEND="
 	dev-libs/glib:2
 	dev-libs/libev
@@ -42,7 +40,10 @@ RDEPEND="${CDEPEND}
 	!x11-wm/i3
 "
 
+S=${WORKDIR}/i3-${PV}
+
 DOCS=( RELEASE-NOTES-${PV} )
+
 PATCHES[0]="${FILESDIR}/musl.patch"
 
 src_prepare() {
