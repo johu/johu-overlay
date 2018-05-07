@@ -5,7 +5,7 @@ EAPI=6
 
 inherit autotools
 
-DESCRIPTION="i3 with more features"
+DESCRIPTION="i3 fork with gaps and some more features"
 HOMEPAGE="https://github.com/Airblader/i3"
 SRC_URI="https://github.com/Airblader/i3/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
