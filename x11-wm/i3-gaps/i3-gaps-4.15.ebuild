@@ -57,7 +57,11 @@ src_prepare() {
 }
 
 src_configure() {
-	local myeconfargs=( --enable-debug=no --disable-sanitizers )  # otherwise injects -O0 -g
+	# disable sanitizer: otherwise injects -O0 -g
+	local myeconfargs=(
+		--enable-debug=no
+		--disable-sanitizers
+	)
 	econf "${myeconfargs[@]}"
 }
 
