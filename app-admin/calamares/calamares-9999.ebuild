@@ -3,7 +3,7 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python{3_4,3_5,3_6} )
+PYTHON_COMPAT=( python{3_5,3_6} )
 inherit kde5 python-r1
 
 DESCRIPTION="Distribution-independent installer framework"
@@ -21,7 +21,10 @@ IUSE="+networkmanager pythonqt +upower"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 DEPEND="${PYTHON_DEPS}
+	$(add_frameworks_dep kconfig)
 	$(add_frameworks_dep kcoreaddons)
+	$(add_frameworks_dep kcrash)
+	$(add_frameworks_dep kpackage)
 	$(add_frameworks_dep kparts)
 	$(add_frameworks_dep kservice)
 	$(add_qt_dep qtdbus)
@@ -31,8 +34,10 @@ DEPEND="${PYTHON_DEPS}
 	$(add_qt_dep qtsvg)
 	$(add_qt_dep qtwebengine 'widgets')
 	$(add_qt_dep qtwidgets)
+	$(add_qt_dep qtxml)
 	dev-cpp/yaml-cpp:=
 	>=dev-libs/boost-1.55:=[${PYTHON_USEDEP}]
+	dev-libs/libpwquality[${PYTHON_USEDEP}]
 	sys-apps/dbus
 	sys-apps/dmidecode
 	sys-auth/polkit-qt[qt5(+)]
