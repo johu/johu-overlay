@@ -10,12 +10,11 @@ DESCRIPTION="A hackable text editor for the 21st Century. - Binary package"
 HOMEPAGE="https://atom.io"
 MY_PN="atom"
 SRC_URI="
-	amd64? ( https://github.com/${MY_PN}/${MY_PN}/releases/download/v${PV}/${MY_PN}-amd64.tar.gz -> ${MY_PN}-amd64-${PV}.tar.gz )
-"
+	https://github.com/${MY_PN}/${MY_PN}/releases/download/v${PV}/${MY_PN}-amd64.tar.gz -> ${MY_PN}-amd64-${PV}.tar.gz"
 
 RESTRICT="mirror"
 
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 -*"
 SLOT="0"
 LICENSE="MIT"
 
