@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MY_PN=${PN/-bin/}
 inherit unpacker eutils
@@ -17,8 +17,7 @@ IUSE=""
 
 S="${WORKDIR}/opt/${MY_PN}"
 
-DEPEND=""
-RDEPEND="${DEPEND}
+RDEPEND="
 	app-arch/libarchive
 	net-misc/curl
 	!app-emulation/vagrant
@@ -33,7 +32,7 @@ src_unpack() {
 src_install() {
 	local dir="/opt/${MY_PN}"
 	dodir ${dir}
-	cp -ar ./* "${ED}${dir}" || die "copy files failed"
+	cp -ar ./* "${ED%/}${dir}" || die "copy files failed"
 
 	make_wrapper "${MY_PN}" "${dir}/bin/${MY_PN}"
 }
