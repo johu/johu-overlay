@@ -3,15 +3,21 @@
 
 EAPI=6
 
-inherit cmake-utils git-r3
+inherit cmake-utils
 
-DESCRIPTION="Qt API for storing passwords securely"
 HOMEPAGE="https://github.com/frankosterfeld/qtkeychain"
-EGIT_REPO_URI="https://github.com/frankosterfeld/${PN}"
+DESCRIPTION="Qt API for storing passwords securely"
+
+if [[ ${PV} != *9999* ]]; then
+	SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~arm64 ~x86"
+else
+	inherit git-r3
+	EGIT_REPO_URI="${HOMEPAGE}.git"
+fi
 
 LICENSE="BSD"
 SLOT="0/1"
-KEYWORDS=""
 IUSE="gnome-keyring"
 
 RDEPEND="
