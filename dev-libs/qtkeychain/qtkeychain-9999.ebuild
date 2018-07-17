@@ -17,6 +17,7 @@ IUSE="gnome-keyring"
 RDEPEND="
 	dev-qt/qtcore:5
 	dev-qt/qtdbus:5
+	gnome-keyring? ( dev-libs/glib:2 )
 "
 DEPEND="${RDEPEND}
 	dev-qt/linguist-tools:5
@@ -29,6 +30,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DBUILD_WITH_QT4=OFF
 		-DQTKEYCHAIN_STATIC=OFF
+		-DBUILD_TEST_APPLICATION=OFF
 		-DBUILD_TRANSLATIONS=ON
 		-DLIBSECRET_SUPPORT=$(usex gnome-keyring)
 	)
