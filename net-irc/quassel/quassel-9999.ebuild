@@ -6,22 +6,23 @@ EAPI=6
 inherit cmake-utils gnome2-utils pax-utils systemd user
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="http://quassel-irc.org/pub/${P}.tar.bz2"
+	MY_P=${PN}-${PV/_/-}
+	SRC_URI="https://quassel-irc.org/pub/${MY_P}.tar.bz2"
 	KEYWORDS="~amd64 ~arm ~ppc ~x86 ~amd64-linux ~sparc-solaris"
+	S="${WORKDIR}/${MY_P}"
 else
 	EGIT_REPO_URI=( "https://github.com/${PN}/${PN}" "git://git.${PN}-irc.org/${PN}" )
 	inherit git-r3
 fi
 
 DESCRIPTION="Qt/KDE IRC client supporting a remote daemon for 24/7 connectivity"
-HOMEPAGE="http://quassel-irc.org/"
+HOMEPAGE="https://quassel-irc.org/"
 LICENSE="GPL-3"
 SLOT="0"
 IUSE="bundled-icons crypt +dbus debug kde ldap monolithic oxygen postgres +server
 snorenotify +ssl syslog urlpreview X"
 
 SERVER_RDEPEND="
-	dev-qt/qtscript:5
 	crypt? ( app-crypt/qca:2[qt5(+),ssl] )
 	ldap? ( net-nds/openldap )
 	postgres? ( dev-qt/qtsql:5[postgres] )
@@ -104,7 +105,6 @@ src_configure() {
 		-DEMBED_DATA=OFF
 		-DWITH_WEBKIT=OFF
 		-DWITH_BUNDLED_ICONS=$(usex bundled-icons)
-		$(cmake-utils_use_find_package crypt QCA2-QT5)
 		$(cmake-utils_use_find_package dbus dbusmenu-qt5)
 		$(cmake-utils_use_find_package dbus Qt5DBus)
 		-DWITH_KDE=$(usex kde)
@@ -116,6 +116,10 @@ src_configure() {
 		-DWITH_WEBENGINE=$(usex urlpreview)
 		-DWANT_QTCLIENT=$(usex X)
 	)
+
+	if use server || use monolithic; then
+		mycmakeargs+=(  $(cmake-utils_use_find_package crypt QCA2-QT5) )
+	fi
 
 	cmake-utils_src_configure
 }
