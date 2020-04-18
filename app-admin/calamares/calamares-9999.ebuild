@@ -3,54 +3,52 @@
 
 EAPI=7
 
-KDE_TEST="true"
-PYTHON_COMPAT=( python3_{5,6} )
-inherit kde5 python-r1
+ECM_TEST="true"
+PYTHON_COMPAT=( python3_7 )
+inherit ecm python-single-r1
 
 DESCRIPTION="Distribution-independent installer framework"
 HOMEPAGE="https://calamares.io"
-if [[ ${KDE_BUILD_TYPE} == live ]] ; then
-	EGIT_REPO_URI="https://github.com/${PN}/${PN}"
-else
-	SRC_URI="https://github.com/${PN}/${PN}/releases/download/v${PV}/${P}.tar.gz"
-	KEYWORDS="~amd64"
-fi
-
+EGIT_REPO_URI="https://github.com/${PN}/${PN}"
+KEYWORDS=""
+SLOT=5
 LICENSE="GPL-3"
 IUSE="+networkmanager pythonqt +upower"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 BDEPEND="
-	$(add_qt_dep linguist-tools)
+	dev-qt/linguist-tools:5
 "
 COMMON_DEPEND="${PYTHON_DEPS}
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kpackage)
-	$(add_frameworks_dep kparts)
-	$(add_frameworks_dep kservice)
-	$(add_qt_dep qtconcurrent)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtsvg)
-	$(add_qt_dep qtwebengine 'widgets')
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
 	dev-cpp/yaml-cpp:=
-	>=dev-libs/boost-1.55:=[python,${PYTHON_USEDEP}]
-	dev-libs/libpwquality[${PYTHON_USEDEP}]
+	$(python_gen_cond_dep '
+		>=dev-libs/boost-1.55:=[python,${PYTHON_MULTI_USEDEP}]
+		dev-libs/libpwquality[${PYTHON_MULTI_USEDEP}]
+	')
+	dev-qt/qtconcurrent:5
+	dev-qt/qtdbus:5
+	dev-qt/qtdeclarative:5
+	dev-qt/qtgui:5
+	dev-qt/qtnetwork:5
+	dev-qt/qtsvg:5
+	dev-qt/qtwebengine:5[widgets]
+	dev-qt/qtwidgets:5
+	dev-qt/qtxml:5
+	kde-frameworks/kconfig:5
+	kde-frameworks/kcoreaddons:5
+	kde-frameworks/kcrash:5
+	kde-frameworks/kpackage:5
+	kde-frameworks/kparts:5
+	kde-frameworks/kservice:5
 	sys-apps/dbus
 	sys-apps/dmidecode
-	sys-auth/polkit-qt[qt5(+)]
+	sys-auth/polkit-qt
 	>=sys-libs/kpmcore-4.0.0:5=
-	pythonqt? ( >=dev-python/PythonQt-3.1:=[${PYTHON_USEDEP}] )
+	pythonqt? ( >=dev-python/PythonQt-3.1:=[${PYTHON_SINGLE_USEDEP}] )
 "
 DEPEND="${COMMON_DEPEND}
-	test? ( $(add_qt_dep qttest) )
+	test? ( dev-qt/qttest:5 )
 "
 RDEPEND="${COMMON_DEPEND}
 	app-admin/sudo
@@ -66,12 +64,11 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	cmake-utils_src_prepare
-	python_setup
+	ecm_src_prepare
 	export PYTHON_INCLUDE_DIRS="$(python_get_includedir)" \
-	       PYTHON_INCLUDE_PATH="$(python_get_library_path)"\
-	       PYTHON_CFLAGS="$(python_get_CFLAGS)"\
-	       PYTHON_LIBS="$(python_get_LIBS)"
+			PYTHON_INCLUDE_PATH="$(python_get_library_path)"\
+			PYTHON_CFLAGS="$(python_get_CFLAGS)"\
+			PYTHON_LIBS="$(python_get_LIBS)"
 
 	sed -i -e 's:pkexec /usr/bin/calamares:calamares-pkexec:' \
 		calamares.desktop || die
@@ -81,15 +78,16 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
+		-DINSTALL_CONFIG=ON
 		-DWEBVIEW_FORCE_WEBKIT=OFF
 		-DCMAKE_DISABLE_FIND_PACKAGE_LIBPARTED=ON
 		-DWITH_PYTHONQT=$(usex pythonqt)
 	)
 
-	kde5_src_configure
+	ecm_src_configure
 }
 
 src_install() {
-	kde5_src_install
+	ecm_src_install
 	dobin "${FILESDIR}"/calamares-pkexec
 }
