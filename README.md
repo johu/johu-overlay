@@ -1,5 +1,7 @@
 # Welcome to the dev/johu overlay
 
+[![pkgcheck](https://github.com/johu/johu-overlay/actions/workflows/pkgcheck.yml/badge.svg)](https://github.com/johu/johu-overlay/actions?query=workflow%3Apkgcheck)
+
 This is my Gentoo developer overlay where I develop and maintain ebuilds for
 experimental packages.
 
