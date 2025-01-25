@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -16,7 +16,8 @@ KEYWORDS="~amd64"
 DEPEND="
 	dev-qt/qtbase:6[gui,widgets]
 	dev-qt/qtdeclarative:6
-	gui-libs/hyprutils
+	dev-qt/qtwayland:6
+	gui-libs/hyprutils:=
 "
 
 RDEPEND="
